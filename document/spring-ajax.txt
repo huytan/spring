@@ -1,0 +1,6 @@
+http://crunchify.com/hello-world-example-spring-mvc-3-2-1/
+
+http://www.technicalkeeda.com/jquery/spring-framework-jquery-ajax-request-and-json-response-example
+
+
+http://crunchify.com/how-to-use-ajax-jquery-in-spring-web-mvc-jsp-example/

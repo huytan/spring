@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:beans.properties</value>
+		</property>
+	</bean>
+
+	<bean class="org.springmvc.model.Title" id="bookTitle">
+		<property name="titleValue">
+			<value>${myFirstSpringBook.title}</value>
+		</property>
+	</bean>
+
+	<bean class="org.springmvc.model.Title" id="chapter1Title">
+		<constructor-arg>
+			<value>${myFirstSpringBook.chapter1.title}</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="chapter2Title" class="org.springmvc.model.Title">
+		<constructor-arg>
+			<value>${myFirstSpringBook.chapter2.title}</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="chapter3Title" class="org.springmvc.model.Title">
+		<property name="titleValue">
+			<value>${myFirstSpringBook.chapter3.title}</value>
+		</property>
+	</bean>
+
+</beans>

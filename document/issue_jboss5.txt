@@ -1,0 +1,2 @@
+http://phytodata.wordpress.com/2010/10/21/demystifying-the-jboss5-jboss-classloading-xml-file/
+http://www.liferay.com/community/forums/-/message_boards/message/6827844

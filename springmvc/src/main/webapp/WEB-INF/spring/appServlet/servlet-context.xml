@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<beans:bean name="/hello_world.html"
+		class="org.springmvc.controller.HelloWorldController" />
+
+	<beans:bean id="carManager" class="org.springmvc.service.CarManager" />
+
+	<beans:bean name="/list_cars.html"
+		class="org.springmvc.controller.CarListController">
+		<beans:property name="carManager" ref="carManager" />
+	</beans:bean>
+
+	<beans:bean id="brandManager" class="org.springmvc.service.BrandManager" />
+	<beans:bean name="/new_car.html" class="org.springmvc.controller.CarNewController">
+		<beans:property name="commandClass" value="org.springmvc.model.Car" />
+		<beans:property name="formView" value="carNew" />
+		<beans:property name="successView" value="list_cars.html" />
+		<beans:property name="validator">
+			<beans:bean class="org.springmvc.validator.CarValidator" />
+		</beans:property>
+		<beans:property name="brandManager" ref="brandManager" />
+		<beans:property name="carManager" ref="carManager" />
+	</beans:bean>
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<context:component-scan base-package="org.springmvc.controller" />
+
+	<!-- <beans:bean id="carManager" class="org.springmvc.service.CarManager">
+		<beans:property name="carList">
+			<beans:list>
+				<beans:ref bean="car1" />
+				<beans:ref bean="car2" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="brandManager" class="org.springmvc.service.BrandManager">
+      <beans:property name="brandList">
+        <beans:list>
+          <beans:ref bean="brand1"/>
+          <beans:ref bean="brand2"/>
+        </beans:list>
+      </beans:property>
+    </beans:bean>
+ 
+    <beans:bean id="brand1" class="org.springmvc.model.Brand">
+        <beans:property name="id" value="1"/>
+        <beans:property name="name" value="Mercedes"/>
+        <beans:property name="country" value="Germany"/>
+    </beans:bean>
+ 
+    <beans:bean id="brand2" class="org.springmvc.model.Brand">
+        <beans:property name="id" value="2"/>
+        <beans:property name="name" value="Peugeot"/>
+        <beans:property name="country" value="France"/>
+    </beans:bean>
+ 
+    <beans:bean id="car1" class="org.springmvc.model.Car">
+        <beans:property name="id" value="1"/>
+        <beans:property name="brand" ref="brand1"/>
+        <beans:property name="model" value="SL 500"/>
+        <beans:property name="price" value="40000"/>
+    </beans:bean>
+ 
+    <beans:bean id="car2" class="org.springmvc.model.Car">
+        <beans:property name="id" value="2"/>
+        <beans:property name="brand" ref="brand2"/>
+        <beans:property name="model" value="607"/>
+        <beans:property name="price" value="35000"/>
+    </beans:bean>
+ -->
+</beans:beans>
